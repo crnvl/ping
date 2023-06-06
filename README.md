@@ -15,7 +15,7 @@ Barebones, anonymous chat platform as a web server using SQLite and Rust.
 
 ```bash
 docker pull ghcr.io/angelsflyinhell/ping:latest
-docker run -d -p 8080:80 ghcr.io/angelsflyinhell/ping:latest
+docker run -dp 80:80 --mount source=ping-db,target=/usr/src/data/ --name ping ghcr.io/angelsflyinhell/ping:latest  
 ```
 
 ## Develop your own client
