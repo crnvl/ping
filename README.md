@@ -10,4 +10,7 @@ Barebones, anonymous chat platform as a web server using SQLite and Rust.
 
 ## Host it yourself with Docker
 
-> under construction
+```bash
+docker pull ghcr.io/angelsflyinhell/ping:latest
+docker run -d -p 8080:80 ghcr.io/angelsflyinhell/ping:latest
+```
