@@ -11,6 +11,22 @@ pub struct Message {
     pub thumb_url: String,
     pub content: String,
     pub username: String,
+    pub ref_id: i64,
+    pub time: String,
+}
+```
+##### Related file: [models.rs:4](./src/models.rs#L4)
+
+## `GET /post/:id`
+Returns a single post with the specified id. The response is a JSON object with the following properties:
+```rs
+pub struct Message {
+    pub id: i64,
+    pub board: String,
+    pub thumb_url: String,
+    pub content: String,
+    pub username: String,
+    pub ref_id: i64,
     pub time: String,
 }
 ```
@@ -28,7 +44,7 @@ pub struct UserMessage {
 ```
 As seen in the `struct`, `thumb_url` and `username` are optional fields. If they are not provided, the server will set the username to "anonymous" and the `thumb_url` to an empty string.
 `ref_id` can be used to reference another message id to create a comment.
-##### Related file: [models.rs:14](./src/models.rs#L14)
+##### Related file: [models.rs:15](./src/models.rs#L15)
 
 # Board Endpoints
 ## `GET /boards`
