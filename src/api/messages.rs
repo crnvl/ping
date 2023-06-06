@@ -19,13 +19,13 @@ pub async fn get_posts(path: web::Path<String>, db: Data<Connection>) -> Json<Ve
     let mut posts = Vec::new();
     while let State::Row = statement.next().unwrap() {
         posts.push(Message {
-            id: generate_snowflake(),
-            board: statement.read::<String, _>(0).unwrap(),
-            thumb_url: statement.read::<String, _>(1).unwrap(),
-            content: statement.read::<String, _>(2).unwrap(),
-            username: statement.read::<String, _>(3).unwrap(),
-            ref_id: statement.read::<i64, _>(4).unwrap(),
-            time: statement.read::<String, _>(5).unwrap(),
+            id: statement.read::<i64, _>(0).unwrap(),
+            board: statement.read::<String, _>(1).unwrap(),
+            thumb_url: statement.read::<String, _>(2).unwrap(),
+            content: statement.read::<String, _>(3).unwrap(),
+            username: statement.read::<String, _>(4).unwrap(),
+            ref_id: statement.read::<i64, _>(5).unwrap(),
+            time: statement.read::<String, _>(6).unwrap(),
         });
     }
 
@@ -41,7 +41,8 @@ pub async fn create_post(
     let board = path.into_inner();
     let message = body.into_inner();
 
-    let query = format!("INSERT INTO messages (board, thumb_url, content, username, ref_id) VALUES ('{}', '{}', '{}', '{}', '{}')", 
+    let query = format!("INSERT INTO messages (id, board, thumb_url, content, username, ref_id) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')", 
+        generate_snowflake(),
         board, 
         message.thumb_url.unwrap_or("".to_string()), 
         message.content, 
