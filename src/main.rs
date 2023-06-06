@@ -1,5 +1,8 @@
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
+use api::debug::index;
 use std::path::Path;
+
+mod api;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -20,6 +23,7 @@ async fn main() -> std::io::Result<()> {
         let logger = Logger::default();
         App::new().wrap(logger)
         .app_data(data)
+        .service(index)
     })
     .bind(("0.0.0.0", 80))?
     .run()
