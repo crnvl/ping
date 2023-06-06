@@ -1,10 +1,10 @@
 use actix_web::{
     get,
-    web::{Data, Json, self},
+    web::{Data, Json, self}, post,
 };
 use sqlite::{Connection, State};
 
-use crate::models::Message;
+use crate::models::{Message, UserMessage};
 
 #[get("/posts/{board}")]
 pub async fn get_posts(path: web::Path<String>,db: Data<Connection>) -> Json<Vec<Message>> {
@@ -25,4 +25,19 @@ pub async fn get_posts(path: web::Path<String>,db: Data<Connection>) -> Json<Vec
     }
 
     Json(posts)
+}
+
+#[post("/posts/{board}")]
+pub async fn create_post(path: web::Path<String>, db: Data<Connection>, body: Json<UserMessage>) -> Json<String> {
+    let board = path.into_inner();
+    let message = body.into_inner();
+
+    let query = format!("INSERT INTO messages (board, thumb_url, content, username) VALUES ('{}', '{}', '{}', '{}')", board, message.thumb_url.unwrap_or("".to_string()), message.content, message.username.unwrap_or("anonymous".to_string()));
+    
+    match db.execute(query) {
+        Ok(_) => (),
+        Err(_) => return Json("Error creating post.".to_string()),
+    }
+
+    Json("Post created.".to_string())
 }

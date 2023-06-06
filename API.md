@@ -13,3 +13,15 @@ pub struct Message {
 }
 ```
 ##### Related file: [models.rs:4](./src/models.rs#L4)
+
+## `POST /posts/:board`
+Creates a new post on the specified board. The request body must be a JSON object with the following properties:
+```rs
+pub struct UserMessage {
+    pub thumb_url: Option<String>,
+    pub content: String,
+    pub username: Option<String>,
+}
+```
+As seen in the `struct`, `thumb_url` and `username` are optional fields. If they are not provided, the server will set the username to "anonymous" and the `thumb_url` to an empty string.
+##### Related file: [models.rs:13](./src/models.rs#L13)

@@ -8,3 +8,10 @@ pub struct Message {
     pub username: String,
     pub time: String,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct UserMessage {
+    pub thumb_url: Option<String>,
+    pub content: String,
+    pub username: Option<String>,
+}
