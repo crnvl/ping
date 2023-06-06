@@ -28,6 +28,6 @@ As seen in the `struct`, `thumb_url` and `username` are optional fields. If they
 ##### Related file: [models.rs:13](./src/models.rs#L13)
 
 # Board Endpoints
-# `GET /boards`
+## `GET /boards`
 Returns a list of all boards. The response is a JSON array of strings, each representing a board.
 
