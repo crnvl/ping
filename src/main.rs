@@ -1,7 +1,7 @@
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
 use api::{
     debug::{index},
-    messages::{get_posts, create_post},
+    messages::{get_posts, create_post}, boards::get_boards,
 };
 use std::path::Path;
 
@@ -30,6 +30,7 @@ async fn main() -> std::io::Result<()> {
         .service(index)
         .service(get_posts)
         .service(create_post)
+        .service(get_boards)
     })
     .bind(("0.0.0.0", 80))?
     .run()
