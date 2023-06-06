@@ -2,6 +2,7 @@ use serde::{Serialize, Deserialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct Message {
+    pub id: i64,
     pub board: String,
     pub thumb_url: String,
     pub content: String,

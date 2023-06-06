@@ -7,6 +7,7 @@ use std::path::Path;
 
 mod api;
 mod models;
+mod utils;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {

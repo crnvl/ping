@@ -6,6 +6,7 @@ The officially hosted instance is available under the base domain [ping.qwq.sh](
 Returns a list of all posts on a specific board. The default board is `all`, which **does not** contain all posts saved in the database. It only contains posts that are not on any other board. The response is a JSON array of objects, each representing a post. The objects have the following properties:
 ```rs
 pub struct Message {
+    pub id: i64,
     pub board: String,
     pub thumb_url: String,
     pub content: String,
@@ -25,7 +26,7 @@ pub struct UserMessage {
 }
 ```
 As seen in the `struct`, `thumb_url` and `username` are optional fields. If they are not provided, the server will set the username to "anonymous" and the `thumb_url` to an empty string.
-##### Related file: [models.rs:13](./src/models.rs#L13)
+##### Related file: [models.rs:14](./src/models.rs#L14)
 
 # Board Endpoints
 ## `GET /boards`
