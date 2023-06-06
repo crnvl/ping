@@ -23,9 +23,11 @@ pub struct UserMessage {
     pub thumb_url: Option<String>,
     pub content: String,
     pub username: Option<String>,
+    pub ref_id: Option<i64>,
 }
 ```
 As seen in the `struct`, `thumb_url` and `username` are optional fields. If they are not provided, the server will set the username to "anonymous" and the `thumb_url` to an empty string.
+`ref_id` can be used to reference another message id to create a comment.
 ##### Related file: [models.rs:14](./src/models.rs#L14)
 
 # Board Endpoints

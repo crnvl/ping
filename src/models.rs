@@ -7,6 +7,7 @@ pub struct Message {
     pub thumb_url: String,
     pub content: String,
     pub username: String,
+    pub ref_id: i64,
     pub time: String,
 }
 
@@ -15,4 +16,5 @@ pub struct UserMessage {
     pub thumb_url: Option<String>,
     pub content: String,
     pub username: Option<String>,
+    pub ref_id: Option<i64>,
 }
