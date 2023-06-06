@@ -9,7 +9,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         let mut create_tables = "";
         if !Path::new("main.db").exists() {
-            create_tables = "CREATE TABLE messages (thumb_url TEXT DEFAULT '', content TEXT, username TEXT DEFAULT 'anonymous', time DATETIME DEFAULT CURRENT_TIMESTAMP);"
+            create_tables = "CREATE TABLE messages (board TEXT DEFAULT 'all', thumb_url TEXT DEFAULT '', content TEXT, username TEXT DEFAULT 'anonymous', time DATETIME DEFAULT CURRENT_TIMESTAMP);"
         }
 
         let connection = sqlite::open("main.db").unwrap();
