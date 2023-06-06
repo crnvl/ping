@@ -32,6 +32,21 @@ pub struct Message {
 ```
 ##### Related file: [models.rs:4](./src/models.rs#L4)
 
+## `GET /post/:id/comments`
+Returns a list of all comments on a specific post. The response is a JSON array of messages, each representing a comment. The objects have the following properties:
+```rs
+pub struct Message {
+    pub id: i64,
+    pub board: String,
+    pub thumb_url: String,
+    pub content: String,
+    pub username: String,
+    pub ref_id: i64,
+    pub time: String,
+}
+```
+##### Related file: [models.rs:4](./src/models.rs#L4)
+
 ## `POST /posts/:board`
 Creates a new post on the specified board. The request body must be a JSON object with the following properties:
 ```rs

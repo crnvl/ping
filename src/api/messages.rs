@@ -54,6 +54,29 @@ pub async fn get_post(path: web::Path<i64>, db: Data<Connection>) -> Json<Messag
     Json(post)
 }
 
+#[get("/post/{id}/comments")]
+pub async fn get_comments(path: web::Path<i64>, db: Data<Connection>) -> Json<Vec<Message>> {
+    let id = path.into_inner();
+
+    let query = format!("SELECT * FROM messages WHERE ref_id = '{}'", id);
+    let mut statement = db.prepare(query).unwrap();
+
+    let mut posts = Vec::new();
+    while let State::Row = statement.next().unwrap() {
+        posts.push(Message {
+            id: statement.read::<i64, _>(0).unwrap(),
+            board: statement.read::<String, _>(1).unwrap(),
+            thumb_url: statement.read::<String, _>(2).unwrap(),
+            content: statement.read::<String, _>(3).unwrap(),
+            username: statement.read::<String, _>(4).unwrap(),
+            ref_id: statement.read::<i64, _>(5).unwrap(),
+            time: statement.read::<String, _>(6).unwrap(),
+        });
+    }
+
+    Json(posts)
+}
+
 #[post("/posts/{board}")]
 pub async fn create_post(
     path: web::Path<String>,
