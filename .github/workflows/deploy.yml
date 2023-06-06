@@ -1,0 +1,22 @@
+name: Deploy Server Image
+
+on:
+    push:
+        branches: [ "main" ]
+
+
+jobs:
+  build:
+    name: Deployment
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build and push the Docker image
+      uses: mr-smithers-excellent/docker-build-push@v5
+      with:
+        image: ping
+        tags: latest
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
