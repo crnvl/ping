@@ -1,6 +1,6 @@
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
 use api::{
-    debug::{index, insert_sample_data},
+    debug::{index},
     messages::{get_posts, create_post},
 };
 use std::path::Path;
@@ -28,7 +28,6 @@ async fn main() -> std::io::Result<()> {
         App::new().wrap(logger)
         .app_data(data)
         .service(index)
-        .service(insert_sample_data)
         .service(get_posts)
         .service(create_post)
     })
