@@ -19,5 +19,5 @@ docker run -d -p 8080:80 ghcr.io/angelsflyinhell/ping:latest
 ```
 
 ## Develop your own client
-You can find the API documentation [here](/API.md).
+You can find the API documentation [here](./API.md).
 Finished clients can be added to the list above by creating a pull request.
