@@ -8,6 +8,7 @@ Barebones, anonymous chat platform as a web server using SQLite and Rust.
  In order to use ping, you will need some sort of client to interact with the server as ping is only a web server.
  As it has a very limited API, building your own client shouldn't be too difficult, if you're into programming.
  If not, you can look out for other people's clients or use one of the following:
+ - [cling - lightweight CLI client](https://github.com/angelsflyinhell/cling)
  - [GUI Client currently in development](/)
  - [...or make your own](https://github.com/angelsflyinhell/ping#develop-your-own-client)
 
