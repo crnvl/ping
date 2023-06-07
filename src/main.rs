@@ -1,7 +1,9 @@
+use actix_cors::Cors;
 use actix_web::{middleware::Logger, web::Data, App, HttpServer};
 use api::{
+    boards::get_boards,
     debug::{index, stats},
-    messages::{get_posts, create_post, get_post, get_comments}, boards::get_boards,
+    messages::{create_post, get_comments, get_post, get_posts},
 };
 use std::path::Path;
 
@@ -15,6 +17,8 @@ async fn main() -> std::io::Result<()> {
     env_logger::init();
 
     HttpServer::new(|| {
+        let cors = Cors::default().send_wildcard().allow_any_origin().allow_any_method().allow_any_header();
+
         let mut create_tables = "";
         if !Path::new("./data/main.db").exists() {
             create_tables = "CREATE TABLE messages (id INTEGER, board TEXT DEFAULT 'all', thumb_url TEXT DEFAULT '', content TEXT, username TEXT DEFAULT 'anonymous', ref_id INTEGER DEFAULT 0, time DATETIME DEFAULT CURRENT_TIMESTAMP);"
@@ -26,7 +30,7 @@ async fn main() -> std::io::Result<()> {
         let data = Data::new(connection);
 
         let logger = Logger::default();
-        App::new().wrap(logger)
+        App::new().wrap(logger).wrap(cors)
         .app_data(data)
         .service(index)
         .service(stats)
