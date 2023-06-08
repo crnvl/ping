@@ -99,11 +99,11 @@ pub async fn create_post(
 
     let query = format!("INSERT INTO messages (id, board, thumb_url, content, username, ref_id) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')", 
         generate_snowflake(),
-        board, 
-        message.thumb_url.unwrap_or("".to_string()), 
+        board.replace("'", "''"), 
+        message.thumb_url.unwrap_or("".to_string()).replace("'", "''"), 
         message.content.replace("'", "''"),
-        message.username.unwrap_or("anonymous".to_string()), 
-        message.ref_id.unwrap_or("0".to_string())
+        message.username.unwrap_or("anonymous".to_string()).replace("'", "''"), 
+        message.ref_id.unwrap_or("0".to_string()).replace("'", "''")
     );
 
     println!("{}", query);
