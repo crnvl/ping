@@ -101,14 +101,16 @@ pub async fn create_post(
         generate_snowflake(),
         board, 
         message.thumb_url.unwrap_or("".to_string()), 
-        message.content, 
+        message.content.replace("'", "''"),
         message.username.unwrap_or("anonymous".to_string()), 
         message.ref_id.unwrap_or("0".to_string())
     );
 
+    println!("{}", query);
+
     match db.execute(query) {
         Ok(_) => (),
-        Err(_) => return Json("Error creating post.".to_string()),
+        Err(err) => return Json(format!("Error creating post: {}", err)),
     }
 
     Json("Post created.".to_string())
