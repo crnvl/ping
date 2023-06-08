@@ -10,7 +10,7 @@ Barebones, anonymous chat platform as a web server using SQLite and Rust.
  If not, you can look out for other people's clients or use one of the following:
  - [cling - lightweight CLI client](https://github.com/angelsflyinhell/cling)
  - [rstro - selfhostable retro looking web gui](https://github.com/angelsflyinhell/rstro)
- - [...or make your own](https://github.com/angelsflyinhell/ping#develop-your-own-client)
+ - [PingClientGUI - Desktop app for creating posts](https://github.com/S1thK3nny/PingClientGUI)
 
 ## Host it yourself with Docker
 
