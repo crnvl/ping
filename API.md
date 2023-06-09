@@ -63,5 +63,11 @@ As seen in the `struct`, `thumb_url` and `username` are optional fields. If they
 
 # Board Endpoints
 ## `GET /boards`
-Returns a list of all boards. The response is a JSON array of strings, each representing a board.
+Returns a list of all boards with their respective amount of posts. The response is a JSON array of boards with the following properties:
+```rs
+pub struct Board {
+    name: String,
+    size: i64,
+}
+```
 
