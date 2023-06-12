@@ -98,11 +98,11 @@ pub async fn create_post(
     let message = body.into_inner();
 
     if board.len() > 30 {
-        return Json("Board name too long.".to_string());
+        return Json("Board name too long. (Limit is 30 characters)".to_string());
     }
 
     if message.content.len() > 2000 {
-        return Json("Message too long.".to_string());
+        return Json("Message too long. (Limit is 2000 characters)".to_string());
     }
 
     let query = format!("INSERT INTO messages (id, board, thumb_url, content, username, ref_id) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')", 

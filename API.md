@@ -59,6 +59,7 @@ pub struct UserMessage {
 ```
 As seen in the `struct`, `thumb_url` and `username` are optional fields. If they are not provided, the server will set the username to "anonymous" and the `thumb_url` to an empty string.
 `ref_id` can be used to reference another message id to create a comment.
+Board names have a limit of 30 characters and content can't be longer than 2000 characters.
 ##### Related file: [models.rs:15](./src/models.rs#L15)
 
 # Board Endpoints
