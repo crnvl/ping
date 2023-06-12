@@ -11,6 +11,7 @@ pub async fn index() -> Json<String> {
 
 #[get("/stats")]
 pub async fn stats(db: Data<Connection>) -> Json<String> {
+    
     let mut stmt = db.prepare("SELECT COUNT(*) FROM messages").unwrap();
     stmt.next().unwrap();
     let count = stmt.read::<i64, _>(0).unwrap();
